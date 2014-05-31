@@ -241,7 +241,6 @@
 
 - (IBAction) closeEditDialog: (id) sender {
 	[tunnelWindow orderOut: self];
-	[portForwardings dealloc];
 	portForwardings = nil;
 	[NSApp stopModal];
 	selectedTunnel = nil;
