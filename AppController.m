@@ -27,8 +27,8 @@
     [aboutLabel setStringValue: [NSString stringWithFormat: @"%@ v%@", [aboutLabel stringValue], [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]]];
 	
 	statusBarItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
-	NSImage *statusBarImage = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"taskicon" ofType:@"png"]];
-    
+
+	NSImage *statusBarImage = [NSImage imageNamed:@"taskicon"];
 	[statusBarItem setMenu: statusMenu];
 	[statusBarItem setToolTip: @"CocTunnel"];
 	[statusBarItem setEnabled: YES];
