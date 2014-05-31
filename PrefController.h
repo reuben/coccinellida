@@ -49,7 +49,10 @@
 
 - (IBAction) selectTunnels: (id) sender;
 
+- (BOOL)isLaunchAtStartup;
 
-- (int) loginItemIndex: (NSURL*) url;
+- (void)toggleLaunchAtStartup;
+
+- (LSSharedFileListItemRef)itemRefInLoginItems;
 
 @end
