@@ -28,8 +28,6 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		CD9F875715C15FFE005D6E1B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD9F875615C15FFE005D6E1B /* Security.framework */; };
-		CDE10D0615C281F300944639 /* Growl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = CDE10D0415C281DE00944639 /* Growl.framework */; };
-		CDE10D0715C2820800944639 /* Growl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDE10D0415C281DE00944639 /* Growl.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -40,7 +38,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				2DE06F9811DD1B550033C0EE /* Sparkle.framework in CopyFiles */,
-				CDE10D0615C281F300944639 /* Growl.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,7 +74,6 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Coccinellida.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Coccinellida.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD9F875615C15FFE005D6E1B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = /System/Library/Frameworks/Security.framework; sourceTree = "<absolute>"; };
-		CDE10D0415C281DE00944639 /* Growl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Growl.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +85,6 @@
 				CD9F875715C15FFE005D6E1B /* Security.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				2DE06F8811DD1B0D0033C0EE /* Sparkle.framework in Frameworks */,
-				CDE10D0715C2820800944639 /* Growl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +109,6 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CDE10D0415C281DE00944639 /* Growl.framework */,
 				CD9F875615C15FFE005D6E1B /* Security.framework */,
 				2DE06F8711DD1B0D0033C0EE /* Sparkle.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
