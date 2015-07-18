@@ -96,5 +96,5 @@
 
 - (IBAction) prepareSSHCommand: (id) sender;
 
-- (void) notificationActionText: (NSString*) actionText notificationTitle: (NSString*) title
+- (void) notificationActionText: (NSString*) actionText notificationTitle: (NSString*) title;
 @end
