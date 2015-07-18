@@ -30,7 +30,7 @@
 
 	NSImage *statusBarImage = [NSImage imageNamed:@"taskicon"];
 	[statusBarItem setMenu: statusMenu];
-	[statusBarItem setToolTip: @"CocTunnel"];
+	[statusBarItem setToolTip: @"Coccinellida Tunnel"];
 	[statusBarItem setEnabled: YES];
 	[statusBarItem setImage:statusBarImage];
     [statusBarItem setAlternateImage:statusBarImage];
