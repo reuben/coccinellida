@@ -81,79 +81,79 @@
 }
 
 -(void) tunnelStatusChanged: (Tunnel*) tunnel status: (NSString*) status {
-	
-	if( [status isEqualToString: @"START"] ){
-		if ( [soundEffectsButton state] == NSOnState )
-			[onSound play];
-	
-		if ( [growlNotificationsButton state] == NSOnState )
-			[GrowlApplicationBridge notifyWithTitle: [NSString stringWithFormat: @"Tunnel %@", [tunnel name]] description: @"Tunnel started " notificationName: @"Tunnel Started" iconData: nil priority: 0 isSticky: NO clickContext: nil];
-	}
-	
-	if( [status isEqualToString: @"STOP"] ){
-		if ( [soundEffectsButton state] == NSOnState )
-			[offSound play];
-	
-		if ( [growlNotificationsButton state] == NSOnState )
-			[GrowlApplicationBridge notifyWithTitle: [NSString stringWithFormat: @"Tunnel %@", [tunnel name]] description: @"Tunnel stopped " notificationName: @"Tunnel Stopped" iconData: nil priority: 0 isSticky: NO clickContext: nil];
-	}
-	
-	if( [status isEqualToString: @"TIME_OUT"] ){
-		if ( [growlNotificationsButton state] == NSOnState )
-			[GrowlApplicationBridge notifyWithTitle: [NSString stringWithFormat: @"Tunnel %@", [tunnel name]] description: @"Time out occured " notificationName: @"Time Out" iconData: nil priority: 0 isSticky: NO clickContext: nil];
-	}
-	
-	if( [status isEqualToString: @"CONNECTED"] ){
-		if ( [growlNotificationsButton state] == NSOnState )
-			[GrowlApplicationBridge notifyWithTitle: [NSString stringWithFormat: @"Tunnel %@", [tunnel name]] description: @"Connection established" notificationName: @"Connection Established" iconData: nil priority: 0 isSticky: NO clickContext: nil];
-	}
-	
-	if( [status isEqualToString: @"WRONG_PASSWORD"] ){
-		if ( [growlNotificationsButton state] == NSOnState )
-			[GrowlApplicationBridge notifyWithTitle: [NSString stringWithFormat: @"Tunnel %@", [tunnel name]] description: @"Login/Password incorrect" notificationName: @"Wrong Password" iconData: nil priority: 0 isSticky: NO clickContext: nil];
-		
-		passwordChangeTunnel = tunnel;
-		[passwordChangeTextField setStringValue: @""];
-		[passwordWindow setTitle: [NSString stringWithFormat: @"%@ incorrect password", [tunnel name]]];
-		[passwordWindow center];
-		[NSApp runModalForWindow: passwordWindow];
-		[NSApp endSheet: passwordWindow];
-		
-		if(passwordChanged){
-			[tunnel stop];
-			[tunnel start];
-		}else{		
-			[tunnel stop];
-			NSAlert* alert = [NSAlert new];
-			[[alert window] center];
-				
-			[alert addButtonWithTitle:@"Close"];
-			[alert setMessageText: [NSString stringWithFormat: @"Tunnel %@ Problem",[tunnel name]]];
-			[alert setInformativeText:@"Login/Password incorrect"];
-		
-			[alert beginSheetModalForWindow: nil modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:nil];
-		}
-	}
-	
-	if( [status isEqualToString: @"CONNECTION_REFUSED"] ){
-		if ( [growlNotificationsButton state] == NSOnState )
-			[GrowlApplicationBridge notifyWithTitle: [NSString stringWithFormat: @"Tunnel %@", [tunnel name]] description: @"Connection refused" notificationName: @"Connection Refused" iconData: nil priority: 0 isSticky: NO clickContext: nil];
-		
-		[tunnel stop];
-		NSAlert* alert = [NSAlert new];
-		[[alert window] center];
-		
-		[alert addButtonWithTitle:@"Close"];
-		[alert setMessageText: [NSString stringWithFormat: @"Tunnel %@ Problem",[tunnel name]]];
-		[alert setInformativeText:@"Connection refused"];
-		
-		[alert beginSheetModalForWindow: nil modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:nil];
-	}
-	
-	if( [status isEqualToString: @"CONNECTION_ERROR"] ){
-		if ( [growlNotificationsButton state] == NSOnState )
-			[GrowlApplicationBridge notifyWithTitle: [NSString stringWithFormat: @"Tunnel %@", [tunnel name]] description: @"Connection error" notificationName: @"Connection Error" iconData: nil priority: 0 isSticky: NO clickContext: nil];
-	}
+    
+    if( [status isEqualToString: @"START"] ){
+        if ( [soundEffectsButton state] == NSOnState )
+            [onSound play];
+        
+        if ( [notificationsButton state] == NSOnState )
+            [self notificationActionText:@"Tunnel started" notificationTitle:[NSString stringWithFormat: @"Tunnel %@", [tunnel name]]];
+    }
+    
+    if( [status isEqualToString: @"STOP"] ){
+        if ( [soundEffectsButton state] == NSOnState )
+            [offSound play];
+        
+        if ( [notificationsButton state] == NSOnState )
+            [self notificationActionText:@"Tunnel stopped" notificationTitle:[NSString stringWithFormat: @"Tunnel %@", [tunnel name]]];
+    }
+    
+    if( [status isEqualToString: @"TIME_OUT"] ){
+        if ( [notificationsButton state] == NSOnState )
+            [self notificationActionText:@"Time out occured" notificationTitle:[NSString stringWithFormat: @"Tunnel %@", [tunnel name]]];
+    }
+    
+    if( [status isEqualToString: @"CONNECTED"] ){
+        if ( [notificationsButton state] == NSOnState )
+            [self notificationActionText:@"Connection established" notificationTitle:[NSString stringWithFormat: @"Tunnel %@", [tunnel name]]];
+    }
+    
+    if( [status isEqualToString: @"WRONG_PASSWORD"] ){
+        if ( [notificationsButton state] == NSOnState )
+            [self notificationActionText:@"Login/Password incorrect" notificationTitle:[NSString stringWithFormat: @"Tunnel %@", [tunnel name]]];
+        
+        passwordChangeTunnel = tunnel;
+        [passwordChangeTextField setStringValue: @""];
+        [passwordWindow setTitle: [NSString stringWithFormat: @"%@ incorrect password", [tunnel name]]];
+        [passwordWindow center];
+        [NSApp runModalForWindow: passwordWindow];
+        [NSApp endSheet: passwordWindow];
+        
+        if(passwordChanged){
+            [tunnel stop];
+            [tunnel start];
+        }else{
+            [tunnel stop];
+            NSAlert* alert = [NSAlert new];
+            [[alert window] center];
+            
+            [alert addButtonWithTitle:@"Close"];
+            [alert setMessageText: [NSString stringWithFormat: @"Tunnel %@ Problem",[tunnel name]]];
+            [alert setInformativeText:@"Login/Password incorrect"];
+            
+            [alert beginSheetModalForWindow: nil modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:nil];
+        }
+    }
+    
+    if( [status isEqualToString: @"CONNECTION_REFUSED"] ){
+        if ( [notificationsButton state] == NSOnState )
+            [self notificationActionText:@"Connection refused" notificationTitle:[NSString stringWithFormat: @"Tunnel %@", [tunnel name]]];
+        
+        [tunnel stop];
+        NSAlert* alert = [NSAlert new];
+        [[alert window] center];
+        
+        [alert addButtonWithTitle:@"Close"];
+        [alert setMessageText: [NSString stringWithFormat: @"Tunnel %@ Problem",[tunnel name]]];
+        [alert setInformativeText:@"Connection refused"];
+        
+        [alert beginSheetModalForWindow: nil modalDelegate:self didEndSelector:@selector(alertDidEnd:returnCode:contextInfo:) contextInfo:nil];
+    }
+    
+    if( [status isEqualToString: @"CONNECTION_ERROR"] ){
+        if ( [notificationsButton state] == NSOnState )
+            [self notificationActionText:@"Connection error" notificationTitle:[NSString stringWithFormat: @"Tunnel %@", [tunnel name]]];
+    }
 }
 
 - (void)alertDidEnd:(NSAlert *)alert returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo {
@@ -528,6 +528,14 @@
 	
 - (void) textDidChange: (NSNotification*) notification {
 	[self prepareSSHCommand: nil];
+}
+
+- (void) notificationActionText: (NSString*) actionText notificationTitle: (NSString*) title {
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = title;
+    notification.informativeText = actionText;
+    
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
 
 @end

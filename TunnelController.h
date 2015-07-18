@@ -21,7 +21,7 @@
 	
 	IBOutlet NSTabView* tabView;
 	IBOutlet NSButton* soundEffectsButton;
-	IBOutlet NSButton* growlNotificationsButton;
+	IBOutlet NSButton* notificationsButton;
 	
 	IBOutlet NSTextField* nameTextField;
 	IBOutlet NSButton* autostartCheckBox;
@@ -96,4 +96,5 @@
 
 - (IBAction) prepareSSHCommand: (id) sender;
 
+- (void) notificationActionText: (NSString*) actionText notificationTitle: (NSString*) title
 @end
