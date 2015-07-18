@@ -9,11 +9,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <Growl.h>
 #import "Tunnel.h"
 
 
-@interface TunnelController : NSObject <GrowlApplicationBridgeDelegate> {
+@interface TunnelController : NSObject <NSUserNotificationCenterDelegate> {
 	
 	IBOutlet NSWindow* prefWindow;
 	IBOutlet NSWindow* tunnelWindow;

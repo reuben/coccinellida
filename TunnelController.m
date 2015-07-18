@@ -10,13 +10,12 @@
 
 #import "TunnelController.h"
 #import "Tunnel.h"
-#import <Growl.h>
 
 @implementation TunnelController
 
 - (void) awakeFromNib {
 	
-	[GrowlApplicationBridge setGrowlDelegate:self];
+    [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
 	
 	onSound = [[NSSound alloc] initWithContentsOfFile: [[NSBundle bundleForClass:[self class]] pathForResource: @"on" ofType: @"mp3"] byReference: YES];
 	[onSound setVolume: 0.2];
@@ -46,11 +45,8 @@
 	[NSThread detachNewThreadSelector: @selector(checkTunnels) toTarget:self withObject:nil ];	
 }
 
-- (NSDictionary *) registrationDictionaryForGrowl {
-	NSArray* notifications = [NSArray arrayWithObjects: @"Tunnel Started", @"Tunnel Stopped", @"Time Out", @"Connection Established", @"Connection Refused", @"Connection Error", @"Wrong Password" , nil];
-	NSDictionary* dict = [NSDictionary dictionaryWithObjects: [NSArray arrayWithObjects: notifications, notifications, nil ]					
-					forKeys: [NSArray arrayWithObjects: GROWL_NOTIFICATIONS_ALL, GROWL_NOTIFICATIONS_DEFAULT, nil] ];
-	return dict;
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification{
+    return YES;
 }
 
 -(void) checkTunnels {
