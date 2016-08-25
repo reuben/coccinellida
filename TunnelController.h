@@ -9,11 +9,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <Growl.h>
 #import "Tunnel.h"
 
 
-@interface TunnelController : NSObject <GrowlApplicationBridgeDelegate> {
+@interface TunnelController : NSObject <NSUserNotificationCenterDelegate> {
 	
 	IBOutlet NSWindow* prefWindow;
 	IBOutlet NSWindow* tunnelWindow;
@@ -21,7 +20,7 @@
 	
 	IBOutlet NSTabView* tabView;
 	IBOutlet NSButton* soundEffectsButton;
-	IBOutlet NSButton* growlNotificationsButton;
+	IBOutlet NSButton* notificationsButton;
 	
 	IBOutlet NSTextField* nameTextField;
 	IBOutlet NSButton* autostartCheckBox;
@@ -96,4 +95,5 @@
 
 - (IBAction) prepareSSHCommand: (id) sender;
 
+- (void) notificationActionText: (NSString*) actionText notificationTitle: (NSString*) title;
 @end

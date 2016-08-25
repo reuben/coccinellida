@@ -28,7 +28,7 @@
 	
 	IBOutlet NSButton* lanchOnStartupButton;
 	IBOutlet NSButton* soundEffectsButton;
-	IBOutlet NSButton* growlNotificationsButton;
+	IBOutlet NSButton* notificationsButton;
 	IBOutlet NSButton* checkForUpdatesButton;
 	
 	IBOutlet NSTableView* tunnelsList;
@@ -39,7 +39,7 @@
 
 - (IBAction) enableSoundEffects: (id) sender;
 
-- (IBAction) enableGrowlNotifications: (id) sender;
+- (IBAction) enableNotifications: (id) sender;
 
 - (IBAction) checkForUpdates: (id) sender;
 

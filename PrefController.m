@@ -23,8 +23,8 @@
 		[[NSUserDefaults standardUserDefaults] synchronize];
 	}
 	
-	if( [[NSUserDefaults standardUserDefaults] objectForKey: @"growl"] == nil){
-		[[NSUserDefaults standardUserDefaults] setBool: YES forKey: @"growl"];
+	if( [[NSUserDefaults standardUserDefaults] objectForKey: @"notification"] == nil){
+		[[NSUserDefaults standardUserDefaults] setBool: YES forKey: @"notification"];
 		[[NSUserDefaults standardUserDefaults] synchronize];
 	}
 	
@@ -34,7 +34,7 @@
 	}
 	
 	[soundEffectsButton setState: [[NSUserDefaults standardUserDefaults] boolForKey: @"sound"] ? NSOnState : NSOffState];
-	[growlNotificationsButton setState: [[NSUserDefaults standardUserDefaults] boolForKey: @"growl"] ? NSOnState : NSOffState];
+	[notificationsButton setState: [[NSUserDefaults standardUserDefaults] boolForKey: @"notification"] ? NSOnState : NSOffState];
 	[checkForUpdatesButton setState: [[NSUserDefaults standardUserDefaults] boolForKey: @"update"] ? NSOnState : NSOffState];
 	
 	// Check for updates
@@ -54,8 +54,8 @@
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (IBAction) enableGrowlNotifications: (id) sender {
-	[[NSUserDefaults standardUserDefaults] setBool: [growlNotificationsButton state] == NSOnState forKey: @"growl"];
+- (IBAction) enableNotifications: (id) sender {
+	[[NSUserDefaults standardUserDefaults] setBool: [notificationsButton state] == NSOnState forKey: @"notification"];
 	[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
